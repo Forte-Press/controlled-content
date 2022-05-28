@@ -4,11 +4,11 @@
 	"name": "wpblockbuddy/controlled-content",
 	"version": "0.1.0",
 	"title": "Controlled Content",
-	"category": "widgets",
+	"category": "design",
 	"icon": "admin-settings",
-	"description": "Creates a controlled content area",
+	"description": "Create an allowed blocks section",
 	"supports": {
-		"align": [ "wide", "full" ],
+		"align": ["wide", "full"],
 		"anchor": true,
 		"html": false,
 		"color": {
@@ -22,9 +22,19 @@
 	},
 	"attributes": {
 		"allowedBlocks": {
-			"type":"array",
+			"type": "array",
 			"default": ["core/paragraph"]
 		}
+	},
+	"example": {
+		"innerBlocks": [
+			{
+				"name": "core/paragraph",
+				"attributes": {
+					"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis."
+				}
+			}
+		]
 	},
 	"textdomain": "controlled-content",
 	"editorScript": "file:./index.js",

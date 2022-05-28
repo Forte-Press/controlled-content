@@ -41,7 +41,6 @@ export default function Edit({
 		const newBlocks = tokens.map((token) => {
 			return blockChoices[token];
 		});
-		//setAttributes({ allowedBlocks: [] });
 		setAttributes({ allowedBlocks: newBlocks });
 	};
 
@@ -61,7 +60,7 @@ export default function Edit({
 						initialOpen={true}
 					>
 						<PanelRow>
-							<p>{__("Restrict the content area to the following blocks:")}</p>
+							<p>{__("Restrict the content area to the following blocks:", "wpblockbuddy")}</p>
 						</PanelRow>
 						<FormTokenField
 							value={blocksValue}
@@ -75,7 +74,6 @@ export default function Edit({
 			<div {...useBlockProps()}>
 				<InnerBlocks
 					allowedBlocks={shuffle(allowedBlocks)}
-					//allowedBlocks={localBlocks}
 					renderAppender={
 						isParentOfSelectedBlock ? InnerBlocks.ButtonBlockAppender : false
 					}
