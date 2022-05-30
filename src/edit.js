@@ -6,18 +6,19 @@ import {
 	InspectorControls,
 	store as blockEditorStore,
 } from "@wordpress/block-editor";
-import { PanelBody, FormTokenField, PanelRow } from "@wordpress/components";
+import {
+	PanelBody,
+	FormTokenField,
+	TextControl,
+	PanelRow,
+} from "@wordpress/components";
 import { shuffle, getKeyByValue } from "./helpers";
 
 import "./editor.scss";
 
-export default function Edit({
-	attributes,
-	setAttributes,
-	clientId,
-	isSelected,
-}) {
-	const { allowedBlocks } = attributes;
+export default function Edit(props) {
+	const { attributes, setAttributes, clientId, isSelected } = props;
+	const { allowedBlocks, instructions } = attributes;
 	const blockChoicesDefaults = {
 		paragraph: "core/paragraph",
 		heading: "core/heading",
@@ -36,6 +37,12 @@ export default function Edit({
 		useSelect((select) =>
 			select("core/block-editor").hasSelectedInnerBlock(clientId, true)
 		) || isSelected;
+	const thisBlock = useSelect((select) =>
+		select("core/block-editor").getBlock(clientId)
+	);
+
+	const showInstructions = thisBlock.innerBlocks.length === 0;
+
 	const userCanView = wpBlockBuddyControlledContent.userCanView;
 	const handleTokensNamestoSlugs = (tokens) => {
 		const newBlocks = tokens.map((token) => {
@@ -60,18 +67,31 @@ export default function Edit({
 						initialOpen={true}
 					>
 						<PanelRow>
-							<p>{__("Restrict the content area to the following blocks:", "wpblockbuddy")}</p>
+							<p>
+								{__(
+									"Restrict the content area to the following blocks:",
+									"wpblockbuddy"
+								)}
+							</p>
 						</PanelRow>
 						<FormTokenField
 							value={blocksValue}
 							suggestions={blockNames}
 							onChange={handleTokensNamestoSlugs}
 						/>
+						<TextControl
+							label={__("Instructions", "wpblockbuddy")}
+							// help={__("Only shown if there are no inner blocks", "wpblockbuddy")}
+							value={instructions}
+							onChange={(value) => setAttributes({ instructions: value })}
+						/>
 					</PanelBody>
 				</InspectorControls>
 			)}
 
 			<div {...useBlockProps()}>
+				{showInstructions && <p className="instructions">{instructions}</p>}
+
 				<InnerBlocks
 					allowedBlocks={shuffle(allowedBlocks)}
 					renderAppender={

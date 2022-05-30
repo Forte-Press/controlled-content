@@ -31,15 +31,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Edit(_ref) {
-  let {
+function Edit(props) {
+  const {
     attributes,
     setAttributes,
     clientId,
     isSelected
-  } = _ref;
+  } = props;
   const {
-    allowedBlocks
+    allowedBlocks,
+    instructions
   } = attributes;
   const blockChoicesDefaults = {
     paragraph: "core/paragraph",
@@ -50,6 +51,8 @@ function Edit(_ref) {
   const blockChoices = wpBlockBuddyControlledContent.hasOwnProperty("blockChoices") ? wpBlockBuddyControlledContent.blockChoices : blockChoicesDefaults;
   const blockNames = Object.keys(blockChoices);
   const isParentOfSelectedBlock = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => select("core/block-editor").hasSelectedInnerBlock(clientId, true)) || isSelected;
+  const thisBlock = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => select("core/block-editor").getBlock(clientId));
+  const showInstructions = thisBlock.innerBlocks.length === 0;
   const userCanView = wpBlockBuddyControlledContent.userCanView;
 
   const handleTokensNamestoSlugs = tokens => {
@@ -75,7 +78,16 @@ function Edit(_ref) {
     value: blocksValue,
     suggestions: blockNames,
     onChange: handleTokensNamestoSlugs
-  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Instructions", "wpblockbuddy") // help={__("Only shown if there are no inner blocks", "wpblockbuddy")}
+    ,
+    value: instructions,
+    onChange: value => setAttributes({
+      instructions: value
+    })
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)(), showInstructions && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "instructions"
+  }, instructions), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks, {
     allowedBlocks: (0,_helpers__WEBPACK_IMPORTED_MODULE_5__.shuffle)(allowedBlocks),
     renderAppender: isParentOfSelectedBlock ? _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.ButtonBlockAppender : false,
     templateLock: false
