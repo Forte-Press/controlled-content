@@ -79,8 +79,8 @@ function Edit(props) {
     suggestions: blockNames,
     onChange: handleTokensNamestoSlugs
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Instructions", "wpblockbuddy") // help={__("Only shown if there are no inner blocks", "wpblockbuddy")}
-    ,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Placeholder", "wpblockbuddy"),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Use to provide instruction on the purpose of this section", "wpblockbuddy"),
     value: instructions,
     onChange: value => setAttributes({
       instructions: value

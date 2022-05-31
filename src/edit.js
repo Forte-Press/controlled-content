@@ -80,8 +80,8 @@ export default function Edit(props) {
 							onChange={handleTokensNamestoSlugs}
 						/>
 						<TextControl
-							label={__("Instructions", "wpblockbuddy")}
-							// help={__("Only shown if there are no inner blocks", "wpblockbuddy")}
+							label={__("Placeholder", "wpblockbuddy")}
+							help={__("Use to provide instruction on the purpose of this section", "wpblockbuddy")}
 							value={instructions}
 							onChange={(value) => setAttributes({ instructions: value })}
 						/>
