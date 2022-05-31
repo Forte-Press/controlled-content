@@ -52,3 +52,7 @@ The block offers two filters.
 
 = 0.1.0 =
 * Release
+
+= 0.2.0 =
+* Add option for custom placeholder text for the block
+* Add link to documentation from the plugin action links
