@@ -4,7 +4,7 @@ Tags:              block, blocks, design, layout
 Requires at least: 5.8
 Tested up to:      6.0
 Requires PHP:      5.6
-Stable tag:        0.2.0
+Stable tag:        0.2.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
