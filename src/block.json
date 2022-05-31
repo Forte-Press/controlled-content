@@ -24,6 +24,9 @@
 		"allowedBlocks": {
 			"type": "array",
 			"default": ["core/paragraph"]
+		},
+		"instructions": {
+			"type": "string"
 		}
 	},
 	"example": {
