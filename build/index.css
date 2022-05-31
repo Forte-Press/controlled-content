@@ -9,5 +9,10 @@
 .wp-block-wpblockbuddy-controlled-content .block-list-appender {
   position: relative;
 }
+.wp-block-wpblockbuddy-controlled-content .instructions {
+  color: gray;
+  display: inline;
+  padding: 4px;
+}
 
 /*# sourceMappingURL=index.css.map*/
