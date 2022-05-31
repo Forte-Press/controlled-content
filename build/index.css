@@ -10,7 +10,7 @@
   position: relative;
 }
 .wp-block-wpblockbuddy-controlled-content .instructions {
-  background-color: lightgray;
+  color: gray;
   display: inline;
   padding: 4px;
 }
