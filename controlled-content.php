@@ -32,3 +32,17 @@ function wpblockbuddy_controlledContentVar () {
 	];
 	wp_localize_script('wpblockbuddy-controlled-content-editor-script', 'wpBlockBuddyControlledContent', $args);
 }
+
+add_action('init', 'wpblockbuddy_cc_setup_plugin_action');
+function wpblockbuddy_cc_setup_plugin_action() {
+ 	$basename = plugin_basename(__FILE__);
+	add_filter( 'plugin_action_links_' . $basename, 'wpblockbuddy_cc_action_links');
+}
+
+function wpblockbuddy_cc_action_links($links) {
+	$additional_links = array(
+		'profiles'   => sprintf('<a href="%s" style="font-weight: 700;" target="_blank" rel="NOFOLLOW">%s</a>', "https://wpblockbuddy.com/blocks/controlled-content-block/?source=action-link", __('Docs', 'wp-migrate-db')),
+	);
+
+	return $links + $additional_links;
+}
