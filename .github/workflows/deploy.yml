@@ -20,7 +20,7 @@ jobs:
         SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
         SLUG: controlled-content-block # optional, remove if GitHub repo name matches SVN slug, including capitalization
 
-  name: Plugin asset/readme update
+name: Plugin asset/readme update
 on:
   push:
     branches:
